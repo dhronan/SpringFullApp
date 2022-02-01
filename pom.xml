@@ -9,10 +9,10 @@
 		<version>2.6.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.javatechie</groupId>
-	<artifactId>spring-data-redis-example</artifactId>
+	<groupId>com.sample.example</groupId>
+	<artifactId>spring-full-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-data-redis-example</name>
+	<name>sring-full-app</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

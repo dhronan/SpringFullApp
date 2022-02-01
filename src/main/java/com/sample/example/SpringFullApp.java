@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(repositoryFactoryBeanClass = EnversRevisionRepositoryFactoryBean.class)
 @EnableJpaAuditing
 @EnableTransactionManagement
-public class SpringDataRedisExampleApplication {
+public class SpringFullApp {
 
    
     public static void main(String[] args) {
-        SpringApplication.run(SpringDataRedisExampleApplication.class, args);
+        SpringApplication.run(SpringFullApp.class, args);
     }
 
 }

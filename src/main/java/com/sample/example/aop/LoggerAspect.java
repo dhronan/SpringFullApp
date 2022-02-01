@@ -15,11 +15,14 @@ import org.aspectj.lang.JoinPoint;
 
 public class LoggerAspect {
 
-	@Pointcut("execution(* com.sample.example.controller.*rod*..*(..))")
-	public void dataLayerExecution(){}
+	@Pointcut("@annotation(org.springframework.web.bind.annotation.RequestMapping)")
+	public void annotatedWithRequestMapping(){}
 	
-	@Before("dataLayerExecution()")
+	
+	@Before("annotatedWithRequestMapping()")
 	void advice(JoinPoint jp) {
-		log.info("Method "+jp+ " "+jp.getArgs()[0].toString()+" Started.");
+		log.info(jp.getTarget().getClass().getName()+" Controller's method "+jp.getSignature().getName()+" Arguments : " +jp.getArgs()[0].toString()+" Started.");
 	}
+	
+	
 }

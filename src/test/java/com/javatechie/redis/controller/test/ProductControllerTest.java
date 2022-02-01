@@ -42,7 +42,7 @@ public class ProductControllerTest {
 		
 		when(repo.save(Mockito.any(Product.class))).thenReturn(new Product(1,"Pen",2,12,null,null,null,null,null));
 		
-		mockMvc.perform(post("/product").characterEncoding("UTF-8").
+		mockMvc.perform(post("/product").
 				contentType(MediaType.APPLICATION_JSON_VALUE).
 				content(a)).andExpect(status().isOk()).
 		

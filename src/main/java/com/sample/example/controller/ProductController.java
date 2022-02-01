@@ -34,6 +34,10 @@ public class ProductController {
 	    public Product save(@RequestBody Product product) {
 	        return dao.save(product);
 	    }
+	    @RequestMapping(method = RequestMethod.GET,path="/sw")
+	    public List<Product> getSW(@RequestBody Product product) {
+	        return dao.getSWProducts();
+	    }
 
 	    @GetMapping
 	    public List<Product> getAllProducts() {

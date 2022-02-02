@@ -27,6 +27,12 @@ spec:
           ports:
            - containerPort: 9292
 
+          name: redis
+          iamge: redis
+          imagePullPolicy: Always
+          ports:
+           - containerPort: 6379
+           
 ---
                 
 kind: Service

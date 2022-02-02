@@ -25,7 +25,7 @@ spec:
            - containerPort: 9292
 
           name: redis
-          iamge: redis
+          image: redis
           imagePullPolicy: Always
           ports:
            - containerPort: 6379

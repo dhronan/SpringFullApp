@@ -24,32 +24,6 @@ spec:
           ports:
            - containerPort: 9292
 ---
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: redis-stateful
-  labels:
-    app: redis-dep
-spec:
-  serviceName: redis-stateful
-  selector:
-    matchLabels:
-      app: redis-pod
-  revisionHistoryLimit: 5
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: redis-pod
-    spec:
-      containers:
-        - name: redis
-          image: redis
-          imagePullPolicy: Always
-          ports:
-           - containerPort: 6379
-           
----
                 
 kind: Service
 apiVersion: v1
@@ -59,22 +33,45 @@ spec:
   selector:
     app:  springfullapp-pod
   ports:
-  - port:  80
+  - port:  9292
     targetPort:  9292
     
 
+
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+spec:
+  serviceName: redis
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+        selector: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:6
+           
 ---
                 
 kind: Service
 apiVersion: v1
 metadata:
-  name:  redis-svc
+  name:  redis
 spec:
   selector:
-    app:  redis-pod
+    app:  redis
   ports:
-  - port:  6379
-    targetPort:  6379
+  - name:  redis
+    port:  6379
     
 ---
 
@@ -94,5 +91,5 @@ spec:
               service:
                 name: springfullapp-svc
                 port: 
-                    number: 80
+                    number: 9292
                

@@ -27,5 +27,15 @@ spec:
           ports:
            - containerPort: 9292
 
+---
                 
-                
+kind: Service
+apiVersion: v1
+metadata:
+  name:  springfullapp-svc
+spec:
+  selector:
+    app:  springfullapp-pod
+  ports:
+  - port:  80
+    targetPort:  9292               

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springfullapp-dep
+  labels:
+    app: springfullapp-dep
+spec:
+  selector:
+    matchLabels:
+      app: springfullapp-pod
+  revisionHistoryLimit: 5
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 2
+  template:
+    metadata:
+      labels:
+        app: springfullapp-pod
+    spec:
+      containers:
+        - name: springfullapp-container
+          image: dhronan/spring-full-app
+          imagePullPolicy: Always
+          ports:
+           - containerPort: 9292
+
+                
+                

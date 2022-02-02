@@ -9,12 +9,9 @@ spec:
     matchLabels:
       app: springfullapp-pod
   revisionHistoryLimit: 5
-  replicas: 3
+  replicas: 1
   strategy:
     type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 2
-      maxSurge: 2
   template:
     metadata:
       labels:

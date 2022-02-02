@@ -39,7 +39,7 @@ public class ProductController {
 	        return dao.getSWProducts();
 	    }
 
-	    @GetMapping
+	    @GetMapping("/all")
 	    public List<Product> getAllProducts() {
 	        return dao.findAll();
 	    }

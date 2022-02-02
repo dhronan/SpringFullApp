@@ -23,8 +23,28 @@ spec:
           imagePullPolicy: Always
           ports:
            - containerPort: 9292
-
-          name: redis
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-dep
+  labels:
+    app: redis-dep
+spec:
+  selector:
+    matchLabels:
+      app: redis-pod
+  revisionHistoryLimit: 5
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: redis-pod
+    spec:
+      containers:
+        - name: redis
           image: redis
           imagePullPolicy: Always
           ports:
@@ -43,7 +63,7 @@ spec:
   - port:  80
     targetPort:  9292
     
----
+
 ---
                 
 kind: Service

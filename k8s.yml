@@ -27,7 +27,7 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: redis-dep
+  name: redis-stateful
   labels:
     app: redis-dep
 spec:

@@ -72,7 +72,7 @@ metadata:
   name:  redis-svc
 spec:
   selector:
-    app:  springfullapp-pod
+    app:  redis-pod
   ports:
   - port:  6379
     targetPort:  6379

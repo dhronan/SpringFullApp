@@ -8,6 +8,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.history.Revision;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.sample.example.entity.CusOrder;
 import com.sample.example.respository.OrderRepo;
@@ -33,8 +37,15 @@ public class OrderController {
 	 
 
 	    @RequestMapping(method = RequestMethod.POST)
-	    public CusOrder save(@RequestBody CusOrder CusOrder) {
-	        return orderService.save(CusOrder);
+	    public ResponseEntity<Object> save(@RequestBody CusOrder CusOrder,UriComponentsBuilder b) {
+	    	CusOrder order=orderService.save(CusOrder);
+	    	
+	    	UriComponents uriComponents = 
+	    	        b.path("/order/{id}").buildAndExpand(order.getId());
+	    	
+	    	
+	        
+	        return ResponseEntity.created(uriComponents.toUri()).build();
 	    }
 
 	    @RequestMapping(method=RequestMethod.POST,path="/revision")

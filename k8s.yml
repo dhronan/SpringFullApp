@@ -65,7 +65,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name:  redis
+  name:  redis-svc
 spec:
   selector:
     app:  redis

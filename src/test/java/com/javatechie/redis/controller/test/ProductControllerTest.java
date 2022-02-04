@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sample.example.controller.ProductController;
 import com.sample.example.entity.Product;
 import com.sample.example.respository.ProductRepo;
+import com.sample.example.service.ProductService;
 
 @SpringBootTest(classes=ProductController.class)
 @AutoConfigureMockMvc
@@ -27,7 +28,7 @@ import com.sample.example.respository.ProductRepo;
 public class ProductControllerTest {
 	
 	@MockBean
-	ProductRepo repo;
+	ProductService repo;
 	
 	@Autowired
 	private MockMvc mockMvc;

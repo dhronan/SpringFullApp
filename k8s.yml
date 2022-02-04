@@ -24,8 +24,8 @@ spec:
           ports:
            - containerPort: 9292
           env:
-           name: JAVA_OPTIONS
-           value: "-Dspring.profiles.active=okteto"
+           - name: JAVA_OPTIONS
+             value: "-Dspring.profiles.active=okteto"
 ---
                 
 kind: Service

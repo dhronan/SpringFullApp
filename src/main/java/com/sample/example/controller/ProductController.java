@@ -2,6 +2,7 @@ package com.sample.example.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -10,6 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.history.Revision;
 import org.springframework.data.history.Revisions;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import com.sample.example.entity.CusOrder;
 import com.sample.example.entity.Product;
 import com.sample.example.respository.ProductRepo;
 import com.sample.example.service.ProductService;
@@ -46,8 +51,15 @@ public class ProductController {
 	    }
 
 	    @RequestMapping(method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,produces = "application/json; charset=utf-8")
-	    public Product save(@RequestBody Product product) {
-	        return service.save(product);
+	    public ResponseEntity<Object> save(@RequestBody Product product,UriComponentsBuilder b) {
+	        
+	        product=service.save(product);
+	    	
+	    	UriComponents uriComponents = 
+	    	        b.path("/order/{id}").buildAndExpand(product.getId());
+	        
+	        return ResponseEntity.created(uriComponents.toUri()).body(Optional.of(product));
+	        
 	    }
 	    @RequestMapping(method = RequestMethod.GET,path="/sw")
 	    public List<Product> getSW(@RequestBody Product product) {

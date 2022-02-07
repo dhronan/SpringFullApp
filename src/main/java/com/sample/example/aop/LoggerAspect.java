@@ -21,7 +21,7 @@ public class LoggerAspect {
 	
 	@Before("annotatedWithRequestMapping()")
 	void advice(JoinPoint jp) {
-		log.info(jp.getTarget().getClass().getName()+" Controller's method "+jp.getSignature().getName()+" Arguments : " +jp.getArgs()[0].toString()+" Started.");
+		//log.info(jp.getTarget().getClass().getName()+" Controller's method "+jp.getSignature().getName()+" Arguments : " +jp.getArgs()[0].toString()+" Started.");
 	}
 	
 	

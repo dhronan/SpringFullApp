@@ -9,9 +9,11 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.history.Revision;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +32,7 @@ import com.sample.example.service.ProductService;
 @RestController
 @RequestMapping("/product")
 @Transactional
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
 	 @Autowired
@@ -47,13 +50,14 @@ public class ProductController {
 	        return service.findAllRevision(id);
 	    }
 
+		//@CrossOrigin(origins = "http://localhost:3000")
 	    @RequestMapping(method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,produces = "application/json; charset=utf-8")
 	    public ResponseEntity<Object> save(@RequestBody Product product,UriComponentsBuilder b) {
 	        
 	        product=service.save(product);
 	    	
 	    	UriComponents uriComponents = 
-	    	        b.path("/order/{id}").buildAndExpand(product.getId());
+	    	        b.path("/product/{id}").buildAndExpand(product.getId());
 	        
 	        return ResponseEntity.created(uriComponents.toUri()).body(Optional.of(product));
 	        

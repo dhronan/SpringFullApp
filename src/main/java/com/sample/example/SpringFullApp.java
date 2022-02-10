@@ -1,5 +1,6 @@
 package com.sample.example;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -20,4 +21,6 @@ public class SpringFullApp {
         SpringApplication.run(SpringFullApp.class, args);
     }
 
+   
+  
 }

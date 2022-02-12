@@ -3,10 +3,12 @@ package com.sample.example.controller;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.history.Revision;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
